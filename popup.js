@@ -10,6 +10,8 @@ function save() {
 	};
 
 	localStorage.setItem('is-auto', $("input:checked").length);
+
+	$('#msg').html('Saved successfully');
 }
 
 function showSavedData() {
@@ -37,7 +39,11 @@ function fill() {
 	data.action = 'fill';
 
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		chrome.tabs.sendMessage(tabs[0].id, data);
+		chrome.tabs.sendMessage(tabs[0].id, data, function(response) {
+			if (response.result == 'succeed') $('#msg').html('Save & fill successfully');
+			else $('#msg').html('Save & fill failed');
+
+		});
 	});
 }
 
