@@ -1,16 +1,16 @@
 <html>
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="jquery-2.1.3.min.js"></script>
   <script src="popup.js"></script>
 </head>
 <body style="width: 400px">
-  <div>Form <input id="form-id" placeholder="ID"></div>
-  <div>Login Name Field <input id="name-id" placeholder="ID"><input id="name-value" placeholder="Value"><br/></div>
-  <div>Password Field <input id="password-id" placeholder="ID"><input id="password-value" placeholder="Value" type="password"><br/></div>
-  <div>Captcha <input id="captcha-pic-id" placeholder="ID"><input id="captcha-field-id" placeholder="Value"><br/></div>
+  <div>Form <input id="form-id" placeholder="Form ID"></div>
+  <div>Login Name Field <input id="name-id" placeholder="Login Name ID"><input id="name-value" placeholder="Value"><br/></div>
+  <div>Password Field <input id="password-id" placeholder="Password ID"><input id="password-value" placeholder="Value" type="password"><br/></div>
+  <div>Captcha <input id="captcha-pic-id" placeholder="Captcha ID"><input id="captcha-field-id" placeholder="Value"><br/></div>
   <div><input id="is-auto" type="checkbox"> Auto Submit?</div>
-  <button onclick="save()">Save</button>
-  <button onclick="saveAndFill()">Save &amp; Fill</button>
+  <button id="saveBtn">Save</button>
+  <button id="saveAndFillBtn">Save &amp; Fill</button>
   <div id="msg"></div>
 </body>
 </html>
