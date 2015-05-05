@@ -4,22 +4,21 @@
   "author": "Elvin Jin",
   "version": "1.0",
   "description": "A Fake iReserve Bot by Elvin. CSCI4140 Assignment 3",
-  "icons": { "48": "cuhk.png" },
+  "icons": { "48": "icon.png" },
   "background": {
     "scripts": ["background.js"]
   },
   "permissions": ["activeTab","tabs","storage"],
   "browser_action": {
-    "default_title": "",
-    "default_icon": "cuhk.png"
-  
+    "default_title": "iBot",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
 	  {
-		"matches": ["https://securelogin.wlan.cuhk.edu.hk/upload/custom/CU_Portal/*","file:///*/login.html*"],
+		"matches": ["http://*.rhcloud.com/*","https://*.rhcloud.com/*"],
 		"js": ["jquery-2.1.3.min.js","action.js","ocrad.js"],
 		"run_at": "document_end"
 	  }
 	]
-
 }
