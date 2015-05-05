@@ -4,6 +4,14 @@ window.onload = function() {
 	chrome.runtime.sendMessage({action: 'fetchData'}, function(response) {
 		fillForm(response);
 	});
+
+	chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse) {
+		console.log('action: will fill');
+		if (request.action == 'fill') {
+			fillForm(request);
+		}
+ 	});
 }
 
 function fillForm (data) {

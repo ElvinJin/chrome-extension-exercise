@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
 				data[key] = value;
 			};
 			data['is-auto'] = localStorage.getItem('is-auto');
-			
+
 			sendResponse(data);
 		}
  	});
