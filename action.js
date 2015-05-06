@@ -1,10 +1,21 @@
 var keys = ['form-id', 'name-id', 'name-value', 'password-id', 'password-value', 'captcha-pic-id', 'captcha-field-id'];
 var ids = ['form-id', 'name-id', 'password-id', 'captcha-pic-id', 'captcha-field-id'];
 
+var haveMessage = 0; // 0 for no message, -1 for fail, 1 for succeed
+
 window.onload = function() {
-	chrome.runtime.sendMessage({action: 'fetchData'}, function(response) {
-		fillForm(response);
-	});
+	if ($('.alert-danger').length != 0)
+		haveMessage = -1;
+	else if ($('.alert-success').length != 0)
+		haveMessage = 1;
+
+	if (haveMessage != 1) {
+		chrome.runtime.sendMessage({action: 'fetchData'}, function(response) {
+			var result = fillForm(response);
+
+			if (haveMessage == -1) window.alert('You login attempt failed');
+		});
+	};
 
 	chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
@@ -23,6 +34,7 @@ function fillForm (data) {
 	};
 
 	for (var i = ids.length - 1; i >= 0; i--) {
+		// try block is to handling illegal user input for ID
 		try {
 			if ($('#' + data[ids[i]]).length == 0) return -1;
 		} catch (e) {
@@ -46,7 +58,8 @@ function fillForm (data) {
 		$('#' + data['captcha-field-id']).val(string);
 	};
 
-	if (data['is-auto'] == 1) autoSubmit(data['form-id']);
+	if (haveMessage == 0 && data['is-auto'] == 1) autoSubmit(data['form-id']);
+	return data['is-auto'];
 }
 
 function autoSubmit(formID) {

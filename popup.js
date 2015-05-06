@@ -10,8 +10,6 @@ function save() {
 	};
 
 	localStorage.setItem('is-auto', $("input:checked").length);
-
-	$('#msg').html('Saved successfully');
 }
 
 function showSavedData() {
@@ -47,13 +45,18 @@ function fill() {
 	});
 }
 
-function saveAndFill() {
+function saveClicked() {
+	save();
+	$('#msg').html('Saved successfully');
+}
+
+function saveAndFillClicked() {
 	save();
 	fill();
 }
 
 window.onload = function () {
-	$('#saveBtn').click(save);
-	$('#saveAndFillBtn').click(saveAndFill);
+	$('#saveBtn').click(saveClicked);
+	$('#saveAndFillBtn').click(saveAndFillClicked);
 	showSavedData();
 }
